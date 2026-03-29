@@ -3,7 +3,7 @@
 [![npm][npm-src]][npm-href]
 [![CI][ci-src]][ci-href]
 
-Vite plugin that converts Makefile `.PHONY` targets into [vite-plus](https://github.com/nicolo-ribaudo/vite-plus) tasks
+Vite plugin that converts Makefile targets into [vite-plus](https://github.com/nicolo-ribaudo/vite-plus) tasks
 
 ## ✨ Features
 
