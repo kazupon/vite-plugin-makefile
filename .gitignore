@@ -1,0 +1,6 @@
+node_modules
+dist
+binding
+*.log
+.DS_Store
+target

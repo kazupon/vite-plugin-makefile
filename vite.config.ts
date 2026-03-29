@@ -1,0 +1,16 @@
+import { defineConfig } from 'vite-plus'
+import { defineLintConfig, defineFmtConfig } from '@kazupon/vp-config'
+
+export default defineConfig({
+  staged: {
+    '*': 'vp check --fix'
+  },
+  pack: {
+    dts: {
+      tsgo: true
+    },
+    exports: true
+  },
+  lint: defineLintConfig(),
+  fmt: defineFmtConfig()
+})

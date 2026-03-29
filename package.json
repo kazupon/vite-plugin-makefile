@@ -1,0 +1,74 @@
+{
+  "name": "vite-plugin-makefile",
+  "version": "0.0.0",
+  "description": "Vite plugin that converts Makefile targets into vite-plus tasks",
+  "keywords": [
+    "makefile",
+    "plugin",
+    "task-runner",
+    "vite",
+    "vite-plus"
+  ],
+  "homepage": "https://github.com/kazupon/vite-plugin-makefile#readme",
+  "bugs": {
+    "url": "https://github.com/kazupon/vite-plugin-makefile#/issues"
+  },
+  "license": "MIT",
+  "author": "Author Name <author.name@mail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kazupon/vite-plugin-makefile.git"
+  },
+  "files": [
+    "binding/*.node",
+    "binding/index.mjs",
+    "binding/index.d.mts",
+    "binding/index.d.ts",
+    "binding/index.js",
+    "dist/*"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vp run build:binding && vp pack",
+    "build:binding": "napi build --release --platform --package makefile-binding --dts index.d.ts -o binding",
+    "dev": "vp pack --watch",
+    "test": "vp test",
+    "check": "vp check",
+    "prepublishOnly": "vp run build"
+  },
+  "devDependencies": {
+    "@kazupon/eslint-plugin": "^0.7.1",
+    "@kazupon/vp-config": "^0.1.0",
+    "@napi-rs/cli": "^3.0.0-alpha.86",
+    "@types/node": "^25.5.0",
+    "@typescript/native-preview": "7.0.0-dev.20260328.1",
+    "bumpp": "^11.0.1",
+    "typescript": "^6.0.2",
+    "vite-plus": "^0.1.14"
+  },
+  "napi": {
+    "binaryName": "makefile-binding",
+    "packageName": "vite-plugin-makefile",
+    "targets": [
+      "aarch64-apple-darwin",
+      "x86_64-apple-darwin",
+      "aarch64-unknown-linux-gnu",
+      "x86_64-unknown-linux-gnu",
+      "x86_64-pc-windows-msvc"
+    ]
+  },
+  "packageManager": "pnpm@10.33.0",
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+      "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
+    }
+  }
+}
