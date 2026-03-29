@@ -54,8 +54,9 @@
     "knip": "knip",
     "release": "bumpp --commit \"release: v%s\" --all --push --tag",
     "dev": "vp pack --watch",
-    "test": "vp test",
-    "check": "vp check",
+    "test": "cargo test && vp test",
+    "check": "cargo check && vp check && knip",
+    "fmt": "cargo fmt && vp fmt",
     "prepublishOnly": "vp run build"
   },
   "devDependencies": {

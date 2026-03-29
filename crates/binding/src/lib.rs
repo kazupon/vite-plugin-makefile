@@ -22,8 +22,7 @@ pub fn parse_makefile_inner(content: &str) -> Vec<MakefileTarget> {
 
     mf.rules()
         .flat_map(|rule| {
-            let prerequisites: Vec<String> =
-                rule.prerequisites().map(|p| p.to_string()).collect();
+            let prerequisites: Vec<String> = rule.prerequisites().map(|p| p.to_string()).collect();
             let phony_ref = &phony_targets;
             rule.targets()
                 .filter(|t| t.to_string() != ".PHONY")
