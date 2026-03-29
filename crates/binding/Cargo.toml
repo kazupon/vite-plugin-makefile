@@ -1,0 +1,15 @@
+[package]
+name = "makefile-binding"
+version = "0.0.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+napi = { workspace = true }
+napi-derive = { workspace = true }
+makefile-lossless = { workspace = true }
+
+[build-dependencies]
+napi-build = { workspace = true }

@@ -1,0 +1,9 @@
+[workspace]
+resolver = "2"
+members = ["crates/binding"]
+
+[workspace.dependencies]
+napi = { version = "3", features = ["napi9"] }
+napi-derive = "3"
+napi-build = "2"
+makefile-lossless = "0.1"
