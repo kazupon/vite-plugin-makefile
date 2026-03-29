@@ -109,6 +109,16 @@ Enable caching for all generated tasks.
 - Recursive Make (`$(MAKE) -C subdir`) is not supported — use the `include` option instead
 - Conditional targets (`ifeq` / `ifdef`) are not supported
 
+## 💖 Credit
+
+This plugin is powered by:
+
+- [`makefile-lossless`](https://github.com/jelmer/makefile-lossless), created by [Jelmer Vernooĳ](https://github.com/jelmer)
+- [`NAPI-RS`](https://github.com/napi-rs/napi-rs), created by [LongYinan](https://github.com/Brooooooklyn) and NAPI-RS community
+- [Vite+](https://github.com/voidzero-dev/vite-plus), created by [Evan You](https://github.com/yyx990803) and VoidZero team
+
+Thank you! ❤️
+
 ## ©️ License
 
 [MIT](http://opensource.org/licenses/MIT)

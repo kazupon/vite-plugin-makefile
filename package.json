@@ -11,25 +11,38 @@
   ],
   "homepage": "https://github.com/kazupon/vite-plugin-makefile#readme",
   "bugs": {
-    "url": "https://github.com/kazupon/vite-plugin-makefile#/issues"
+    "url": "https://github.com/kazupon/vite-plugin-makefile/issues"
   },
   "license": "MIT",
-  "author": "Author Name <author.name@mail.com>",
+  "author": {
+    "name": "kazuya kawaguchi",
+    "email": "kawakazu80@gmail.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kazupon/vite-plugin-makefile.git"
   },
+  "funding": "https://github.com/sponsors/kazupon",
   "files": [
     "binding/*.node",
-    "binding/index.mjs",
-    "binding/index.d.mts",
     "binding/index.d.ts",
     "binding/index.js",
     "dist/*"
   ],
   "type": "module",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
   "exports": {
-    ".": "./dist/index.mjs",
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -38,6 +51,8 @@
   "scripts": {
     "build": "vp run build:binding && vp pack",
     "build:binding": "napi build --release --platform --package makefile-binding --dts index.d.ts -o binding",
+    "knip": "knip",
+    "release": "bumpp --commit \"release: v%s\" --all --push --tag",
     "dev": "vp pack --watch",
     "test": "vp test",
     "check": "vp check",
@@ -50,6 +65,7 @@
     "@types/node": "^25.5.0",
     "@typescript/native-preview": "7.0.0-dev.20260328.1",
     "bumpp": "^11.0.1",
+    "knip": "^6.1.0",
     "typescript": "^6.0.2",
     "vite-plus": "^0.1.14"
   },
