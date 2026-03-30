@@ -15,6 +15,8 @@ export default defineConfig({
       neverBundle: [/binding\/index\.js/, /\.node$/]
     }
   },
-  lint: defineLintConfig(),
+  lint: defineLintConfig({
+    ignorePatterns: ['example-app/**']
+  }),
   fmt: defineFmtConfig()
 })
