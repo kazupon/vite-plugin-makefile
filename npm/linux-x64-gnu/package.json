@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-makefile-linux-x64-gnu",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Native binding for vite-plugin-makefile (Linux x64 glibc)",
   "homepage": "https://github.com/kazupon/vite-plugin-makefile#readme",
   "license": "MIT",
