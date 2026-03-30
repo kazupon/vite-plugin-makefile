@@ -30,5 +30,7 @@ export default defineConfig({
       }
     }
   }),
-  fmt: defineFmtConfig()
+  fmt: defineFmtConfig({
+    ignorePatterns: ['CHANGELOG.md']
+  })
 })
