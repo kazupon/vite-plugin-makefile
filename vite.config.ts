@@ -25,6 +25,7 @@ export default defineConfig({
         ignoreFiles: [
           ...defaultIgnoreFilesOfEnforceHeaderCommentRule,
           'example-app/**',
+          'scripts/**',
           '**/*.bench.ts'
         ]
       }
