@@ -134,15 +134,10 @@ jobs:
           done
         shell: bash
 
-      - name: Setup npm for publishing
-        run: |
-          npm config set provenance true
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Publish platform packages
         run: npx napi pre-publish --no-gh-release -t npm --npm-dir ${NPM_DIR}
+        env:
+          NPM_CONFIG_PROVENANCE: true
 
       - name: Publish main package
         run: |
