@@ -32,6 +32,7 @@ jobs:
         with:
           node-version: 22
           cache: true
+          run-install: false
 
       - name: Install dependencies
         run: vp install --no-frozen-lockfile
@@ -64,6 +65,7 @@ jobs:
         with:
           node-version: 22
           cache: true
+          run-install: false
 
       - name: Install dependencies
         run: vp install --no-frozen-lockfile
@@ -94,6 +96,7 @@ jobs:
         with:
           node-version: 22
           cache: true
+          run-install: false
 
       - name: Install dependencies
         run: vp install --no-frozen-lockfile
