@@ -135,12 +135,16 @@ jobs:
         shell: bash
 
       - name: Publish platform packages
-        run: npx napi pre-publish --no-gh-release -t npm --npm-dir ${NPM_DIR}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
+          npx napi pre-publish --no-gh-release -t npm --npm-dir ${NPM_DIR}
         env:
-          NPM_CONFIG_PROVENANCE: true
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish main package
         run: |
+          # Remove token-based auth and use trusted publishing for main package
+          sed -i '/_authToken/d' ~/.npmrc
           # Restore any changes made by napi pre-publish to lockfile
           git restore --source=HEAD --staged --worktree -- pnpm-lock.yaml 2>/dev/null || true
           pnpm publish --access public --no-git-checks
