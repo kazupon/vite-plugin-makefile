@@ -48,7 +48,7 @@
     "build": "vp run build:binding && vp pack",
     "build:binding": "napi build --release --platform --package makefile-binding --dts index.d.ts --js index.js --esm -o binding",
     "knip": "knip",
-    "release": "bumpp --commit \"release: v%s\" --all --push --tag",
+    "release": "bumpp \"package.json\" \"npm/**/package.json\" --commit \"release: v\" --all --push --tag",
     "dev": "vp pack --watch",
     "test": "cargo test && vp test",
     "check": "cargo check && vp check && knip",
