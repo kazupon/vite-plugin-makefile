@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-makefile-win32-x64-msvc",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Native binding for vite-plugin-makefile (Windows x64 MSVC)",
   "homepage": "https://github.com/kazupon/vite-plugin-makefile#readme",
   "license": "MIT",

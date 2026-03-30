@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-makefile",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Vite plugin that converts Makefile targets into vite-plus tasks",
   "keywords": [
     "makefile",
@@ -70,11 +70,11 @@
     "vite-plus": "^0.1.14"
   },
   "optionalDependencies": {
-    "vite-plugin-makefile-darwin-arm64": "0.0.6",
-    "vite-plugin-makefile-darwin-x64": "0.0.6",
-    "vite-plugin-makefile-linux-x64-gnu": "0.0.6",
-    "vite-plugin-makefile-linux-x64-musl": "0.0.6",
-    "vite-plugin-makefile-win32-x64-msvc": "0.0.6"
+    "vite-plugin-makefile-darwin-arm64": "0.0.7",
+    "vite-plugin-makefile-darwin-x64": "0.0.7",
+    "vite-plugin-makefile-linux-x64-gnu": "0.0.7",
+    "vite-plugin-makefile-linux-x64-musl": "0.0.7",
+    "vite-plugin-makefile-win32-x64-msvc": "0.0.7"
   },
   "napi": {
     "binaryName": "makefile-binding",
