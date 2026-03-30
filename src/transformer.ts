@@ -9,11 +9,14 @@
  * @license MIT
  */
 
+import { createDebug } from 'obug'
 import { readFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { getPhonyTargets } from './parser.ts'
 
 import type { MakefileOptions, TaskDefinition } from './types.ts'
+
+const debug = createDebug('vite-plugin-makefile:transformer')
 
 /**
  * Parse Makefiles in the specified directories and transform their targets into Vite task definitions.
@@ -33,16 +36,25 @@ export function parseMakefileTasks(
   for (const dir of include) {
     const makefilePath = resolve(root, dir, 'Makefile')
     if (!existsSync(makefilePath)) {
+      debug('Makefile not found: %s', makefilePath)
       continue
     }
 
+    debug('parsing Makefile: %s', makefilePath)
     const content = readFileSync(makefilePath, 'utf-8')
     const targets = getPhonyTargets(content)
+    debug(
+      'found %d phony targets in %s: %O',
+      targets.length,
+      dir,
+      targets.map(t => t.name)
+    )
     const phonyNames = new Set(targets.map(t => t.name))
     const isRoot = dir === '.'
 
     for (const target of targets) {
       if (exclude.includes(target.name)) {
+        debug('excluding target: %s', target.name)
         continue
       }
 
@@ -70,6 +82,7 @@ export function parseMakefileTasks(
         )
       }
 
+      debug('task registered: %s -> %O', taskName, task)
       tasks[taskName] = task
     }
   }

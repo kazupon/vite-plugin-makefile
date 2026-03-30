@@ -9,9 +9,12 @@
  * @license MIT
  */
 
+import { createDebug } from 'obug'
 import { parseMakefile } from '../binding/index.js'
 
 import type { ParsedTarget } from './types.ts'
+
+const debug = createDebug('vite-plugin-makefile:parser')
 
 /**
  * Parse the content of a Makefile and extract targets, their prerequisites, and phony status.
@@ -20,7 +23,9 @@ import type { ParsedTarget } from './types.ts'
  * @returns an array of parsed targets with their prerequisites and phony status
  */
 function parseMakefileTargets(content: string): ParsedTarget[] {
-  return parseMakefile(content)
+  const targets = parseMakefile(content)
+  debug('parsed %d targets', targets.length)
+  return targets
 }
 
 /**
@@ -30,5 +35,7 @@ function parseMakefileTargets(content: string): ParsedTarget[] {
  * @returns an array of targets that are marked as .PHONY in the Makefile
  */
 export function getPhonyTargets(content: string): ParsedTarget[] {
-  return parseMakefileTargets(content).filter(target => target.isPhony)
+  const phony = parseMakefileTargets(content).filter(target => target.isPhony)
+  debug('filtered %d phony targets', phony.length)
+  return phony
 }

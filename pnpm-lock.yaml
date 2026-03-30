@@ -11,6 +11,10 @@ overrides:
 importers:
 
   .:
+    dependencies:
+      obug:
+        specifier: ^2.1.1
+        version: 2.1.1
     devDependencies:
       '@kazupon/eslint-plugin':
         specifier: ^0.7.1

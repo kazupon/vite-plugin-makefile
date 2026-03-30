@@ -9,9 +9,12 @@
  * @license MIT
  */
 
+import { createDebug } from 'obug'
 import { parseMakefileTasks } from './transformer.ts'
 
 import type { MakefileOptions } from './types.ts'
+
+const debug = createDebug('vite-plugin-makefile')
 
 export type { MakefileOptions, TaskDefinition, ParsedTarget } from './types.ts'
 
@@ -23,13 +26,17 @@ export type { MakefileOptions, TaskDefinition, ParsedTarget } from './types.ts'
  */
 export function Makefile(options?: MakefileOptions) {
   const resolvedOptions = resolveOptions(options ?? {})
+  debug('resolved options: %O', resolvedOptions)
   return {
     name: 'vite-plugin-makefile',
     config(_config: unknown, _env: unknown & { root: string }) {
       const root = _env.root ?? process.cwd()
+      debug('config hook called, root: %s', root)
+      const tasks = parseMakefileTasks(root, resolvedOptions)
+      debug('generated %d tasks: %O', Object.keys(tasks).length, Object.keys(tasks))
       return {
         run: {
-          tasks: parseMakefileTasks(root, resolvedOptions)
+          tasks
         }
       }
     }
