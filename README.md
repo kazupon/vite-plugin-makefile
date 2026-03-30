@@ -1,5 +1,8 @@
 # vite-plugin-makefile
 
+> [!CAUTION]
+> Vite+ is currently in **alpha** and its plugin APIs (especially the `run.tasks` config hook) are subject to breaking changes. **Do not use this plugin in production yet.** This plugin will be ready for use once Vite+ reaches a stable release.
+
 [![npm][npm-src]][npm-href]
 [![CI][ci-src]][ci-href]
 
