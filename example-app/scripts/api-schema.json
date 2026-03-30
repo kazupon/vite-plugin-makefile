@@ -1,0 +1,21 @@
+{
+  "types": {
+    "User": {
+      "id": "number",
+      "name": "string",
+      "email": "string"
+    },
+    "Post": {
+      "id": "number",
+      "title": "string",
+      "body": "string",
+      "authorId": "number"
+    },
+    "Comment": {
+      "id": "number",
+      "text": "string",
+      "postId": "number",
+      "userId": "number"
+    }
+  }
+}
