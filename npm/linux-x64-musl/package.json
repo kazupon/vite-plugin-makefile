@@ -13,7 +13,9 @@
     "url": "git+https://github.com/kazupon/vite-plugin-makefile.git"
   },
   "files": [
-    "makefile-binding.linux-x64-musl.node"
+    "makefile-binding.linux-x64-musl.node",
+    "LICENSE",
+    "README.md"
   ],
   "os": [
     "linux"

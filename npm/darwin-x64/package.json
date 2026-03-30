@@ -13,7 +13,9 @@
     "url": "git+https://github.com/kazupon/vite-plugin-makefile.git"
   },
   "files": [
-    "makefile-binding.darwin-x64.node"
+    "makefile-binding.darwin-x64.node",
+    "LICENSE",
+    "README.md"
   ],
   "os": [
     "darwin"
