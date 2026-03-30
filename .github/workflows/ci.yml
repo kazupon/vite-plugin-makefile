@@ -14,6 +14,8 @@ on:
 
 jobs:
   lint:
+    needs:
+      - build
     runs-on: ${{ matrix.os }}
     name: Lint (${{ matrix.os }})
     strategy:
@@ -33,6 +35,12 @@ jobs:
 
       - name: Install dependencies
         run: vp install
+
+      - name: Download binding artifact
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
+        with:
+          name: binding-${{ matrix.os }}
+          path: binding
 
       - name: Check strictly codes
         run: vp run check
@@ -60,6 +68,12 @@ jobs:
       - name: Install dependencies
         run: vp install
 
+      - name: Download binding artifact
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
+        with:
+          name: binding-${{ matrix.os }}
+          path: binding
+
       - name: Testing
         run: vp run test
 
@@ -86,3 +100,9 @@ jobs:
 
       - name: Building
         run: vp run build
+
+      - name: Upload binding artifact
+        uses: actions/upload-artifact@ea165f8d65b6db9a6b7a0d7c2b898defc3680da4 # v4.6.2
+        with:
+          name: binding-${{ matrix.os }}
+          path: binding/
