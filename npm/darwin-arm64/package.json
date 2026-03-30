@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-makefile-darwin-arm64",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Native binding for vite-plugin-makefile (macOS arm64)",
   "homepage": "https://github.com/kazupon/vite-plugin-makefile#readme",
   "license": "MIT",
