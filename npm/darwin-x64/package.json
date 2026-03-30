@@ -1,7 +1,17 @@
 {
   "name": "vite-plugin-makefile-darwin-x64",
   "version": "0.0.0",
+  "description": "Native binding for vite-plugin-makefile (macOS x64)",
+  "homepage": "https://github.com/kazupon/vite-plugin-makefile#readme",
   "license": "MIT",
+  "author": {
+    "name": "kazuya kawaguchi",
+    "email": "kawakazu80@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kazupon/vite-plugin-makefile.git"
+  },
   "files": [
     "makefile-binding.darwin-x64.node"
   ],
@@ -11,5 +21,8 @@
   "cpu": [
     "x64"
   ],
-  "main": "makefile-binding.darwin-x64.node"
+  "main": "makefile-binding.darwin-x64.node",
+  "publishConfig": {
+    "access": "public"
+  }
 }

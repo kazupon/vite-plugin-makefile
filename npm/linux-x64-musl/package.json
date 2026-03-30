@@ -1,7 +1,17 @@
 {
   "name": "vite-plugin-makefile-linux-x64-musl",
   "version": "0.0.0",
+  "description": "Native binding for vite-plugin-makefile (Linux x64 musl)",
+  "homepage": "https://github.com/kazupon/vite-plugin-makefile#readme",
   "license": "MIT",
+  "author": {
+    "name": "kazuya kawaguchi",
+    "email": "kawakazu80@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kazupon/vite-plugin-makefile.git"
+  },
   "files": [
     "makefile-binding.linux-x64-musl.node"
   ],
@@ -14,5 +24,8 @@
   "libc": [
     "musl"
   ],
-  "main": "makefile-binding.linux-x64-musl.node"
+  "main": "makefile-binding.linux-x64-musl.node",
+  "publishConfig": {
+    "access": "public"
+  }
 }

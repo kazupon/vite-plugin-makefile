@@ -1,7 +1,17 @@
 {
   "name": "vite-plugin-makefile-win32-x64-msvc",
   "version": "0.0.0",
+  "description": "Native binding for vite-plugin-makefile (Windows x64 MSVC)",
+  "homepage": "https://github.com/kazupon/vite-plugin-makefile#readme",
   "license": "MIT",
+  "author": {
+    "name": "kazuya kawaguchi",
+    "email": "kawakazu80@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kazupon/vite-plugin-makefile.git"
+  },
   "files": [
     "makefile-binding.win32-x64-msvc.node"
   ],
@@ -11,5 +21,8 @@
   "cpu": [
     "x64"
   ],
-  "main": "makefile-binding.win32-x64-msvc.node"
+  "main": "makefile-binding.win32-x64-msvc.node",
+  "publishConfig": {
+    "access": "public"
+  }
 }

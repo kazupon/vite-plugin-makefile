@@ -9,7 +9,11 @@ export default defineConfig({
     dts: {
       tsgo: true
     },
-    exports: true
+    exports: true,
+    deps: {
+      alwaysBundle: [],
+      neverBundle: [/binding\/index\.js/, /\.node$/]
+    }
   },
   lint: defineLintConfig(),
   fmt: defineFmtConfig()
