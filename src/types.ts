@@ -63,3 +63,15 @@ export interface ParsedTarget {
   prerequisites: string[]
   isPhony: boolean
 }
+
+/**
+ * Cache entry for a parsed Makefile, keyed by absolute file path
+ */
+export interface MakefileCacheEntry {
+  /** File modification time in milliseconds */
+  mtimeMs: number
+  /** Hash of file content for change detection when mtime changes */
+  contentHash: string
+  /** Cached phony targets from parsing */
+  targets: ParsedTarget[]
+}

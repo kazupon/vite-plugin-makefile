@@ -10,12 +10,13 @@
  */
 
 import { createDebug } from 'obug'
-import { parseMakefileTasks } from './transformer.ts'
+import { parseMakefileTasks, clearMakefileCache } from './transformer.ts'
 
 import type { MakefileOptions } from './types.ts'
 
 const debug = createDebug('vite-plugin-makefile')
 
+export { clearMakefileCache }
 export type { MakefileOptions, TaskDefinition, ParsedTarget } from './types.ts'
 
 /**

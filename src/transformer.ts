@@ -10,13 +10,52 @@
  */
 
 import { createDebug } from 'obug'
-import { readFileSync, existsSync } from 'node:fs'
+import { createHash } from 'node:crypto'
+import { readFileSync, existsSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { getPhonyTargets } from './parser.ts'
 
-import type { MakefileOptions, TaskDefinition } from './types.ts'
+import type { MakefileCacheEntry, MakefileOptions, ParsedTarget, TaskDefinition } from './types.ts'
 
 const debug = createDebug('vite-plugin-makefile:transformer')
+
+const fileCache = new Map<string, MakefileCacheEntry>()
+
+function getCachedTargets(makefilePath: string): ParsedTarget[] {
+  const stat = statSync(makefilePath)
+  const cached = fileCache.get(makefilePath)
+
+  // Level 1: mtime check (no file read needed)
+  if (cached && cached.mtimeMs === stat.mtimeMs) {
+    debug('cache hit (mtime): %s', makefilePath)
+    return cached.targets
+  }
+
+  // mtime changed or no cache entry -- must read the file
+  const content = readFileSync(makefilePath, 'utf-8')
+  const contentHash = createHash('sha1').update(content).digest('hex')
+
+  // Level 2: content hash check (avoids re-parsing)
+  if (cached && cached.contentHash === contentHash) {
+    debug('cache hit (content hash): %s', makefilePath)
+    cached.mtimeMs = stat.mtimeMs
+    return cached.targets
+  }
+
+  // Cache miss -- parse
+  debug('cache miss: %s', makefilePath)
+  const targets = getPhonyTargets(content)
+  fileCache.set(makefilePath, { mtimeMs: stat.mtimeMs, contentHash, targets })
+  return targets
+}
+
+/**
+ * Clear the internal Makefile parse cache.
+ */
+export function clearMakefileCache(): void {
+  fileCache.clear()
+  debug('cache cleared')
+}
 
 /**
  * Parse Makefiles in the specified directories and transform their targets into Vite task definitions.
@@ -40,9 +79,7 @@ export function parseMakefileTasks(
       continue
     }
 
-    debug('parsing Makefile: %s', makefilePath)
-    const content = readFileSync(makefilePath, 'utf-8')
-    const targets = getPhonyTargets(content)
+    const targets = getCachedTargets(makefilePath)
     debug(
       'found %d phony targets in %s: %O',
       targets.length,

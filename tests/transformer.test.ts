@@ -1,10 +1,14 @@
-import { describe, it, expect } from 'vite-plus/test'
+import { describe, it, expect, beforeEach } from 'vite-plus/test'
 import { resolve } from 'node:path'
-import { parseMakefileTasks } from '../src/transformer.ts'
+import { parseMakefileTasks, clearMakefileCache } from '../src/transformer.ts'
 
 const fixturesDir = resolve(__dirname, 'fixtures')
 
 describe('parseMakefileTasks', () => {
+  beforeEach(() => {
+    clearMakefileCache()
+  })
+
   it('should generate tasks from a simple Makefile', () => {
     const tasks = parseMakefileTasks(resolve(fixturesDir, 'simple'), {
       include: ['.'],
@@ -178,5 +182,34 @@ describe('parseMakefileTasks', () => {
     expect(tasks.build).toBeDefined()
     expect(tasks['backend/api/serve']).toBeDefined()
     expect(tasks['infra/docker/up']).toBeDefined()
+  })
+
+  it('should return same results on second call (cache hit)', () => {
+    const opts = {
+      include: ['.'],
+      exclude: [] as string[],
+      prefix: 'directory' as const,
+      cache: true
+    }
+    const root = resolve(fixturesDir, 'simple')
+    const first = parseMakefileTasks(root, opts)
+    const second = parseMakefileTasks(root, opts)
+
+    expect(second).toEqual(first)
+  })
+
+  it('should return correct results after clearMakefileCache', () => {
+    const opts = {
+      include: ['.'],
+      exclude: [] as string[],
+      prefix: 'directory' as const,
+      cache: true
+    }
+    const root = resolve(fixturesDir, 'simple')
+    const first = parseMakefileTasks(root, opts)
+    clearMakefileCache()
+    const second = parseMakefileTasks(root, opts)
+
+    expect(second).toEqual(first)
   })
 })

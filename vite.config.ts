@@ -1,5 +1,9 @@
 import { defineConfig } from 'vite-plus'
-import { defineLintConfig, defineFmtConfig } from '@kazupon/vp-config'
+import {
+  defineLintConfig,
+  defineFmtConfig,
+  defaultIgnoreFilesOfEnforceHeaderCommentRule
+} from '@kazupon/vp-config'
 
 export default defineConfig({
   staged: {
@@ -16,7 +20,15 @@ export default defineConfig({
     }
   },
   lint: defineLintConfig({
-    ignorePatterns: ['example-app/**']
+    comments: {
+      enForceHeaderComment: {
+        ignoreFiles: [
+          ...defaultIgnoreFilesOfEnforceHeaderCommentRule,
+          'example-app/**',
+          '**/*.bench.ts'
+        ]
+      }
+    }
   }),
   fmt: defineFmtConfig()
 })

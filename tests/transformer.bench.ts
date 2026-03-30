@@ -1,6 +1,6 @@
-import { bench, describe } from 'vite-plus/test'
+import { bench, describe, beforeAll, beforeEach } from 'vite-plus/test'
 import { resolve } from 'node:path'
-import { parseMakefileTasks } from '../src/transformer.ts'
+import { parseMakefileTasks, clearMakefileCache } from '../src/transformer.ts'
 
 const fixturesDir = resolve(__dirname, 'fixtures')
 
@@ -14,40 +14,47 @@ const complexIncludes = [
   'scripts'
 ]
 
-describe('parseMakefileTasks', () => {
-  bench('simple (1 dir, 4 targets)', () => {
-    parseMakefileTasks(resolve(fixturesDir, 'simple'), {
-      include: ['.'],
-      exclude: [],
-      prefix: 'directory',
-      cache: true
-    })
+const defaultOpts = {
+  include: ['.'],
+  exclude: [] as string[],
+  prefix: 'directory' as const,
+  cache: true
+}
+
+const complexOpts = {
+  ...defaultOpts,
+  include: complexIncludes
+}
+
+describe('parseMakefileTasks (cold)', () => {
+  beforeEach(() => {
+    clearMakefileCache()
   })
 
-  bench('multi-dir (2 dirs, 7 targets)', () => {
-    parseMakefileTasks(resolve(fixturesDir, 'multi-dir'), {
-      include: ['.', 'infra'],
-      exclude: [],
-      prefix: 'directory',
-      cache: true
-    })
+  bench('simple (1 dir, 4 targets)', () => {
+    clearMakefileCache()
+    parseMakefileTasks(resolve(fixturesDir, 'simple'), defaultOpts)
   })
 
   bench('complex (7 dirs, 51 targets)', () => {
-    parseMakefileTasks(resolve(fixturesDir, 'complex'), {
-      include: complexIncludes,
-      exclude: [],
-      prefix: 'directory',
-      cache: true
-    })
+    clearMakefileCache()
+    parseMakefileTasks(resolve(fixturesDir, 'complex'), complexOpts)
+  })
+})
+
+describe('parseMakefileTasks (cached)', () => {
+  beforeAll(() => {
+    // Warm up cache
+    clearMakefileCache()
+    parseMakefileTasks(resolve(fixturesDir, 'simple'), defaultOpts)
+    parseMakefileTasks(resolve(fixturesDir, 'complex'), complexOpts)
   })
 
-  bench('complex with exclude (7 dirs)', () => {
-    parseMakefileTasks(resolve(fixturesDir, 'complex'), {
-      include: complexIncludes,
-      exclude: ['clean', 'lint', 'format', 'prune', 'logs', 'ps'],
-      prefix: 'directory',
-      cache: true
-    })
+  bench('simple (1 dir, 4 targets)', () => {
+    parseMakefileTasks(resolve(fixturesDir, 'simple'), defaultOpts)
+  })
+
+  bench('complex (7 dirs, 51 targets)', () => {
+    parseMakefileTasks(resolve(fixturesDir, 'complex'), complexOpts)
   })
 })
