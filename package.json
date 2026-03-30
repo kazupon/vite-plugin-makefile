@@ -69,13 +69,6 @@
     "typescript": "^6.0.2",
     "vite-plus": "^0.1.14"
   },
-  "optionalDependencies": {
-    "vite-plugin-makefile-darwin-arm64": "0.0.0",
-    "vite-plugin-makefile-darwin-x64": "0.0.0",
-    "vite-plugin-makefile-linux-x64-gnu": "0.0.0",
-    "vite-plugin-makefile-linux-x64-musl": "0.0.0",
-    "vite-plugin-makefile-win32-x64-msvc": "0.0.0"
-  },
   "napi": {
     "binaryName": "makefile-binding",
     "packageName": "vite-plugin-makefile",
