@@ -32,7 +32,7 @@ export function Makefile(options?: MakefileOptions) {
   return {
     name: 'vite-plugin-makefile',
 
-    config(_config: unknown, _env: unknown & { root: string }) {
+    config(_config: unknown, _env: { root: string }) {
       const root = _env.root ?? process.cwd()
       debug('config hook called, root: %s', root)
       const tasks = parseMakefileTasks(root, resolvedOptions)
