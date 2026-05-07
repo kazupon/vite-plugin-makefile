@@ -3,6 +3,9 @@
 > [!CAUTION]
 > Vite+ is currently in **alpha** and its plugin APIs (especially the `run.tasks` config hook) are subject to breaking changes. **Do not use this plugin in production yet.** This plugin will be ready for use once Vite+ reaches a stable release.
 
+> [!WARNING]
+> **This plugin does not work yet.** The `run.tasks` configuration via the plugin `config` hook relies on [voidzero-dev/vite-plus#1213](https://github.com/voidzero-dev/vite-plus/pull/1213), which has been reverted. The underlying `vite.config` API is still under discussion in [vitejs/vite#22085](https://github.com/vitejs/vite/issues/22085). This plugin will be functional once the upstream API is finalized and re-landed.
+
 [![npm][npm-src]][npm-href]
 [![CI][ci-src]][ci-href]
 
@@ -25,15 +28,19 @@ vp add -D vite-plugin-makefile
 
 ```ts
 // vite.config.ts
-import { defineConfig } from 'vite-plus'
+import { defineConfig, lazyPlugins } from 'vite-plus'
 import { Makefile } from 'vite-plugin-makefile'
 
 export default defineConfig({
   plugins: [
-    Makefile({
-      include: ['.', 'infra'],
-      exclude: ['help', 'default'],
-      prefix: 'directory'
+    lazyPlugins(() => {
+      return [
+        Makefile({
+          include: ['.', 'infra'],
+          exclude: [],
+          prefix: 'directory'
+        })
+      ]
     })
   ],
   run: {

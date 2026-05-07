@@ -9,11 +9,11 @@
     "preview": "vp preview"
   },
   "devDependencies": {
-    "typescript": "~5.9.3",
+    "typescript": "^6.0.3",
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vite-plus": "latest"
   },
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@11.0.7",
   "pnpm": {
     "overrides": {
       "vite": "npm:@voidzero-dev/vite-plus-core@latest",

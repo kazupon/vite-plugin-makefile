@@ -1,12 +1,17 @@
-import { defineConfig } from 'vite-plus'
+import { defineConfig, lazyPlugins } from 'vite-plus'
 import { Makefile } from '../src/index.ts'
 
+console.log('Vite configuration loaded')
 export default defineConfig({
   plugins: [
-    Makefile({
-      include: ['.', 'infra'],
-      exclude: [],
-      prefix: 'directory'
+    lazyPlugins(() => {
+      return [
+        Makefile({
+          include: ['.', 'infra'],
+          exclude: [],
+          prefix: 'directory'
+        })
+      ]
     })
   ],
   run: {
