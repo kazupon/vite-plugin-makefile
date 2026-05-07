@@ -19,6 +19,7 @@ export default defineConfig({
       neverBundle: [/binding\/index\.js/, /\.node$/]
     }
   },
+  // @ts-expect-error -- FIXME: Fix the type definition of `defineLintConfig`
   lint: defineLintConfig({
     comments: {
       enForceHeaderComment: {
