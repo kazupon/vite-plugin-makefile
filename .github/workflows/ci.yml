@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Vite Plus
-        uses: voidzero-dev/setup-vp@b5d848f5a62488f3d3d920f8aa6ac318a60c5f07 # v1.0.0
+        uses: voidzero-dev/setup-vp@2dec1e33f4ab2c6d5bce1b0c4607961bb1a3f7a1 # v1.12.0
         with:
           node-version: 22
           cache: true
@@ -61,7 +61,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Vite Plus
-        uses: voidzero-dev/setup-vp@b5d848f5a62488f3d3d920f8aa6ac318a60c5f07 # v1.0.0
+        uses: voidzero-dev/setup-vp@2dec1e33f4ab2c6d5bce1b0c4607961bb1a3f7a1 # v1.12.0
         with:
           node-version: 22
           cache: true
@@ -92,7 +92,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Vite Plus
-        uses: voidzero-dev/setup-vp@b5d848f5a62488f3d3d920f8aa6ac318a60c5f07 # v1.0.0
+        uses: voidzero-dev/setup-vp@2dec1e33f4ab2c6d5bce1b0c4607961bb1a3f7a1 # v1.12.0
         with:
           node-version: 22
           cache: true
