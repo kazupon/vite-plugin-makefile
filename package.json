@@ -67,7 +67,7 @@
     "bumpp": "^11.0.1",
     "knip": "^6.12.0",
     "typescript": "^6.0.3",
-    "vite-plus": "^0.2.0"
+    "vite-plus": "^0.3.0"
   },
   "optionalDependencies": {
     "vite-plugin-makefile-darwin-arm64": "0.0.7",
