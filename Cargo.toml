@@ -6,4 +6,4 @@ members = ["crates/binding"]
 napi = { version = "3", features = ["napi9"] }
 napi-derive = "3"
 napi-build = "2"
-makefile-lossless = "0.1"
+makefile-lossless = "0.3"
