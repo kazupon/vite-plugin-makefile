@@ -56,7 +56,7 @@
     "prepublishOnly": "vp run build"
   },
   "dependencies": {
-    "obug": "^2.1.1"
+    "obug": "^3.0.0"
   },
   "devDependencies": {
     "@kazupon/eslint-plugin": "^0.7.1",
