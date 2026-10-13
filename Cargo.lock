@@ -165,12 +165,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "log"
-version = "0.4.29"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5e5032e24019045c762d3c0f28f5b6b8bbf38563a65908389bf7978758920897"
-
-[[package]]
 name = "makefile-binding"
 version = "0.0.0"
 dependencies = [
@@ -182,11 +176,10 @@ dependencies = [
 
 [[package]]
 name = "makefile-lossless"
-version = "0.1.7"
+version = "0.4.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "85fd6456fd1895499a2cd26302eff80855631c6c7f6a3af2a29d71eb45c3098e"
+checksum = "25a80f1e6bd18fe790d69cc1dda3eedaaa75bbd052a9734a137017056b5e1fa7"
 dependencies = [
- "log",
  "rowan",
 ]
 
